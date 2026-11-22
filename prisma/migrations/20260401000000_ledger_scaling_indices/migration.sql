@@ -2,6 +2,19 @@
 -- Unique index on (entityType, entityId, sequenceNumber)
 -- BRIN index on createdAt for time-range scanning over temporal partitions
 
+CREATE TABLE IF NOT EXISTS "EventLog" (
+    "id" TEXT NOT NULL,
+    "entityType" TEXT NOT NULL,
+    "entityId" TEXT NOT NULL,
+    "eventType" TEXT NOT NULL,
+    "sequenceNumber" INTEGER NOT NULL,
+    "payload" JSONB NOT NULL,
+    "txHash" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "EventLog_pkey" PRIMARY KEY ("id")
+);
+
 CREATE UNIQUE INDEX IF NOT EXISTS "EventLog_entityType_entityId_sequenceNumber_key"
 ON "EventLog" ("entityType", "entityId", "sequenceNumber");
 
