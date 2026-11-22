@@ -25,6 +25,6 @@ import { SCANNER_TOKEN } from './scanner.interface';
     DocumentScanProcessor,
     DocumentScanQueueService,
   ],
-  exports: [DocumentScanQueueService, SCANNER_TOKEN],
+  exports: [DocumentScanQueueService, SCANNER_TOKEN, DocumentScanProcessor],
 })
 export class DocumentsScanModule {}
